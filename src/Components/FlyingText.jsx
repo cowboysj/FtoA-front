@@ -13,9 +13,13 @@ const flyInFromLeft = keyframes`
 `;
 const Text = styled.div`
   display: flex;
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 40px;
   margin: 30px;
+  font-family: "Pretendard";
+  color: #000;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 `;
 
 const FlyingTextContainer = styled.div`

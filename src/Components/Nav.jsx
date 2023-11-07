@@ -42,6 +42,7 @@ const Menu = styled.div`
   font-weight: 600;
   font-size: 20px;
   cursor: pointer;
+  font-family: "Pretendard";
 `;
 
 export default function Nav() {
