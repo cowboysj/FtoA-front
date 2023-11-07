@@ -21,7 +21,7 @@ const LogoWrap = styled.div`
   justify-content: center;
   align-items: center;
   width: 8%;
-  height: 60%;
+  height: 55%;
 `;
 const Logo = styled.img`
   display: flex;
