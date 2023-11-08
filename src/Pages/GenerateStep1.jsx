@@ -91,7 +91,7 @@ export default function GenerateStep1() {
     <Wrap>
       <Text>문제를 생성할 내용을 입력해주세요.</Text>
       <Content placeholder="내용을 입력해주세요." />
-      <FileInput type="file" accept=".pdf" />
+      <FileInput type="file" accept=".mp3" />
 
       <ButtonWrap>
         <NextButton onClick={handleStep2}>다음</NextButton>

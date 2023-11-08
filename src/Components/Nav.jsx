@@ -68,6 +68,9 @@ export default function Nav() {
   const handleCommunityClick = () => {
     navigate("/generate/step1");
   };
+  const handleMyClick = () => {
+    navigate("/myworkbook");
+  };
 
   return (
     <Div>
@@ -77,6 +80,7 @@ export default function Nav() {
         </LogoWrap>
         <MenuWrap>
           <Menu onClick={handleCommunityClick}>문제 생성</Menu>
+          <Menu onClick={handleMyClick}>내 문제집</Menu>
         </MenuWrap>
         <LoginButton>로그인</LoginButton>
       </Wrap>
