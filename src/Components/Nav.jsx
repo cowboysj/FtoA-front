@@ -33,7 +33,7 @@ const Logo = styled.img`
 const MenuWrap = styled.div`
   display: flex;
   align-items: center;
-  width: 40%;
+  width: 80%;
 `;
 
 const Menu = styled.div`
@@ -45,6 +45,20 @@ const Menu = styled.div`
   font-family: "Pretendard";
 `;
 
+const LoginButton = styled.div`
+  display: flex;
+  background-color: pink;
+  cursor: pointer;
+  font-family: "Pretendard";
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+
+  border-radius: 30px;
+  background: #000;
+  color: white;
+`;
+
 export default function Nav() {
   const navigate = useNavigate();
 
@@ -52,7 +66,7 @@ export default function Nav() {
     navigate("/");
   };
   const handleCommunityClick = () => {
-    navigate("/generate");
+    navigate("/generate/step1");
   };
 
   return (
@@ -64,6 +78,7 @@ export default function Nav() {
         <MenuWrap>
           <Menu onClick={handleCommunityClick}>문제 생성</Menu>
         </MenuWrap>
+        <LoginButton>로그인</LoginButton>
       </Wrap>
     </Div>
   );

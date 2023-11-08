@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Nav from "./Components/Nav";
 
-import FlyingText from "./Components/FlyingText";
-import Generate from "./Pages/Generate";
+import GenerateStep1 from "./Pages/GenerateStep1";
+import GenerateLoading from "./Pages/GenerateLoading";
+import GenerateStep2 from "./Pages/GenerateStep2";
 
 function App() {
   return (
@@ -11,8 +12,10 @@ function App() {
       <div className="app-container">
         <Nav />
         <Routes>
-          <Route path="/" element={<FlyingText />} />
-          <Route path="/generate" element={<Generate />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/generate/step1" element={<GenerateStep1 />} />
+          <Route path="/generate/step2" element={<GenerateStep2 />} />
+          <Route path="/generate/loading" element={<GenerateLoading />} />
         </Routes>
       </div>
     </BrowserRouter>
