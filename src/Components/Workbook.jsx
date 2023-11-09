@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+
+//문제집 컴포넌트
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,7 +11,7 @@ const Wrap = styled.div`
   height: 220px;
   margin: 15px;
   border-radius: 10px;
-  background: #fff3f3;
+  background: white;
   box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 `;

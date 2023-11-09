@@ -9,6 +9,7 @@ import GenerateStep2 from "./Pages/GenerateStep2";
 import Workbook from "./Pages/MyWorkbook";
 import MyWorkbook from "./Pages/MyWorkbook";
 import Book from "./Pages/Book";
+import Question from "./Pages/Question";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/generate/loading" element={<GenerateLoading />} />
             <Route path="/myworkbook" element={<MyWorkbook />} />
             <Route path="/myworkbook/:workbookid" element={<Book />} />
+            <Route path="/question" element={<Question />} />
           </Routes>
         </div>
       </BrowserRouter>

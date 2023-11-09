@@ -69,31 +69,63 @@ const KeyWord = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   background: ${(props) => (props.active1 ? "lightgray" : "white")};
-  height: 60%;
+  height: 70%;
   width: 30%;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
   /* &:hover {
     background-color: lightgray;
   } */
 `;
+const InputWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const Label = styled.div`
+  display: flex;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+const KeywordInput = styled.input`
+  display: flex;
+  width: 32px;
+  margin-left: 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+`;
+const NewInput = styled.input`
+  display: flex;
+  width: 32px;
+  margin-left: 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+`;
+
 const NewQuestion = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  background: ${(props) => (props.active2 ? "lightgray" : "white")};
-  height: 60%;
+  background: ${(props) => (props.active1 ? "lightgray" : "white")};
+  height: 70%;
   width: 30%;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
-  /*  &:hover {
-    background-color: lightgray;
-  } */
+  /* &:hover {
+  background-color: lightgray;
+} */
 `;
 const Title = styled.div`
   display: flex;
-  height: 50%;
   align-items: center;
   color: #000;
   font-family: Pretendard;
@@ -134,12 +166,20 @@ export default function GenerateStep2() {
         <KeyWord active1={keyword} onClick={handleKeywordClick}>
           <Title>키워드 가리기 </Title>
           <Content>AI가 제출한 글에서 중요한 키워드를 가려 제공합니다.</Content>
+          <InputWrap>
+            <Label>원하는 키워드 개수를 입력하세요 :</Label>
+            <KeywordInput type="number" min={0} max={10} />
+          </InputWrap>
         </KeyWord>
         <NewQuestion active2={NewCard} onClick={handleNewClick}>
           <Title>새로운 문제 생성 유형</Title>
           <Content>
             AI가 제출한 글에서 중요한 부분을 문제로 만들어줍니다.
           </Content>
+          <InputWrap>
+            <Label>원하는 문제 개수를 입력하세요 :</Label>
+            <NewInput type="number" min={0} max={10} />
+          </InputWrap>
         </NewQuestion>
       </BoxWrap>
       <ButtonWrap>
