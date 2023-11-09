@@ -47,7 +47,7 @@ const Plus = styled.div`
 `;
 
 const Modal = styled.div`
-  width: 300px;
+  width: 340px;
   height: 150px;
   position: fixed;
   top: 50%;
@@ -55,8 +55,13 @@ const Modal = styled.div`
   transform: translate(-50%, -50%);
   padding: 20px;
   background-color: #fff;
-  border: 1px solid #000;
   z-index: 1000;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ModalOverlay = styled.div`
@@ -76,26 +81,80 @@ const ModalTitle = styled.div`
   font-weight: 600;
   line-height: normal;
 `;
-const Book = styled.div`
-  display: flex;
-  height: 18px;
-  max-width: 90px;
-  padding: 7px 20px;
+
+const Close = styled.div`
   justify-content: center;
   align-items: center;
+  display: flex;
+  border: 1px solid black;
+  width: 40px;
+  padding: 5px 5px;
   border-radius: 30px;
-  background: ${(props) => (props.copied ? "white" : "black")};
-  color: ${(props) => (props.copied ? "black" : "white")};
-
+  background: #fff;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  bottom: 20px;
+  right: 90px;
   font-family: Pretendard;
   font-size: 15px;
-  border: 1px solid black;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
-  &:hover {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
+`;
+const MakeButton = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 1px solid black;
+  width: 40px;
+  padding: 5px 5px;
+  border-radius: 30px;
+  background: black;
+  color: white;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+`;
+const InputWrap = styled.div`
+  display: flex;
+
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 20px;
+`;
+const TitleInput = styled.input`
+  display: flex;
+  width: 150px;
+  margin: 0px 0px 10px 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  color: black;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 600;
+  ::placeholder {
+    color: gray;
+  }
+`;
+const DesInput = styled.input`
+  display: flex;
+  width: 250px;
+  margin-left: 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  color: black;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  ::placeholder {
+    color: gray;
   }
 `;
 
@@ -107,10 +166,6 @@ export default function MyWorkbook() {
   };
 
   const handleCloseModal = () => {
-    setModalOpen(false);
-  };
-
-  const handleOverlayClick = () => {
     setModalOpen(false);
   };
 
@@ -127,12 +182,17 @@ export default function MyWorkbook() {
 
       {isModalOpen && (
         <>
-          <ModalOverlay onClick={handleOverlayClick} />
+          <ModalOverlay />
           <Modal>
             {/* 모달 내용 */}
-            <ModalTitle>문제를 저장할 문제집을 선택해주세요.</ModalTitle>
-            <Book>데이터베이스</Book>
-            <button onClick={handleCloseModal}>닫기</button>
+            <ModalTitle>생성할 문제집 이름, 설명을 적어주세요.</ModalTitle>
+            <InputWrap>
+              <TitleInput placeholder="문제집 이름" />
+              <DesInput placeholder="설명" />
+            </InputWrap>
+
+            <Close onClick={handleCloseModal}>취소</Close>
+            <MakeButton onClick={handleCloseModal}>생성</MakeButton>
           </Modal>
         </>
       )}

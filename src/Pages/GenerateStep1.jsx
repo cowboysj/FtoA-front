@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setContentValue } from "../Redux/ContentSlice";
 const Wrap = styled.div`
   display: flex;
   width: 90%;
@@ -83,14 +85,24 @@ const FileInput = styled.input`
 `;
 
 export default function GenerateStep1() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleStep2 = () => {
     navigate("/generate/step2");
   };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    dispatch(setContentValue(value));
+  };
+
   return (
     <Wrap>
       <Text>문제를 생성할 내용을 입력해주세요.</Text>
-      <Content placeholder="내용을 입력해주세요." />
+      <Content
+        onChange={handleInputChange}
+        placeholder="내용을 입력해주세요."
+      />
       <FileInput type="file" accept=".mp3" />
 
       <ButtonWrap>

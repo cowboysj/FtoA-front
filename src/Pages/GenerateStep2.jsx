@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setCreateNum, setKeywordNum } from "../Redux/ContentSlice";
 
 const Wrap = styled.div`
   display: flex;
@@ -120,9 +123,9 @@ const NewQuestion = styled.div`
   height: 70%;
   width: 30%;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
-  /* &:hover {
-  background-color: lightgray;
-} */
+  &:hover {
+    background-color: lightgray;
+  }
 `;
 const Title = styled.div`
   display: flex;
@@ -145,6 +148,7 @@ const Content = styled.div`
 `;
 export default function GenerateStep2() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [keyword, setKeyword] = useState(false);
   const [NewCard, setNewCard] = useState(false);
@@ -156,9 +160,57 @@ export default function GenerateStep2() {
     setNewCard(!NewCard);
   };
 
+  const handleKeyNum = (e) => {
+    const value = e.target.value;
+    dispatch(setKeywordNum(value));
+  };
+
+  const handleCreate = (e) => {
+    const value = e.target.value;
+    dispatch(setCreateNum(value));
+  };
+
+  const Content22 = useSelector((state) => state.content.contentValue); //요약본
+  const Num1 = useSelector((state) => state.content.keywordNum); //키워드 문제 개수
+  const Num2 = useSelector((state) => state.content.createNum); //생성문제 개수
+
   const handleStep2 = () => {
     navigate("/generate/loading");
+    console.log(Content22);
+    console.log(Num1);
+    console.log(Num2);
+    setPostData({
+      content: Content22,
+      keyn: Num1,
+      newn: Num2,
+    });
   };
+
+  // POST 요청
+  const [postData, setPostData] = useState({
+    content: null,
+    keyn: 0,
+    newn: 0,
+  });
+
+  const sendPostRequest = async () => {
+    try {
+      // 엔드포인트
+      const apiUrl = "https://localhost:5000/";
+
+      const response = await axios.post(apiUrl, postData);
+      console.log("응답 데이터:", response.data);
+    } catch (error) {
+      console.error("오류 발생:", error.message);
+    }
+  };
+
+  //POST 이벤트 핸들러
+  const handleButtonClick = () => {
+    sendPostRequest();
+    handleStep2();
+  };
+
   return (
     <Wrap>
       <Text>생성할 문제 유형을 선택해주세요.</Text>
@@ -168,7 +220,12 @@ export default function GenerateStep2() {
           <Content>AI가 제출한 글에서 중요한 키워드를 가려 제공합니다.</Content>
           <InputWrap>
             <Label>원하는 키워드 개수를 입력하세요 :</Label>
-            <KeywordInput type="number" min={0} max={10} />
+            <KeywordInput
+              onChange={handleKeyNum}
+              type="number"
+              min={0}
+              max={10}
+            />
           </InputWrap>
         </KeyWord>
         <NewQuestion active2={NewCard} onClick={handleNewClick}>
@@ -178,12 +235,12 @@ export default function GenerateStep2() {
           </Content>
           <InputWrap>
             <Label>원하는 문제 개수를 입력하세요 :</Label>
-            <NewInput type="number" min={0} max={10} />
+            <NewInput onChange={handleCreate} type="number" min={0} max={10} />
           </InputWrap>
         </NewQuestion>
       </BoxWrap>
       <ButtonWrap>
-        <NextButton onClick={handleStep2}>다음</NextButton>
+        <NextButton onClick={handleButtonClick}>다음</NextButton>
       </ButtonWrap>
     </Wrap>
   );
