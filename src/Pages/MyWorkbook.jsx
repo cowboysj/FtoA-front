@@ -52,7 +52,7 @@ const Plus = styled.div`
 
 const Modal = styled.div`
   width: 340px;
-  height: 150px;
+  height: 140px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -64,6 +64,7 @@ const Modal = styled.div`
   background: #fff;
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
   align-items: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
 `;
@@ -126,6 +127,7 @@ const MakeButton = styled.div`
 const InputWrap = styled.div`
   display: flex;
 
+  align-items: center;
   flex-direction: column;
   width: 95%;
   margin: 0 auto;
@@ -133,7 +135,7 @@ const InputWrap = styled.div`
 `;
 const TitleInput = styled.input`
   display: flex;
-  width: 150px;
+  width: 200px;
   margin: 0px 0px 10px 10px;
   outline: none;
   border: none;
@@ -194,11 +196,40 @@ const PutDescription = styled.div`
   font-size: 18px;
   font-weight: 500;
 `;
-export default function MyWorkbook() {
+
+const NewWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 160px;
+  height: 200px;
+  margin: 15px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+`;
+const NewTitle = styled.div`
+  display: flex;
+  width: 80%;
+  height: 30%;
+  margin: 0 auto;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 23px;
+  font-weight: 700;
+`;
+
+const MyWorkbook = () => {
+  const [book, setBook] = useState(null);
+  const [book2, setBook2] = useState(null);
+  const [book3, setBook3] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen2, setModalOpen2] = useState(false);
   const [NewbookTitle, setNewbookTitle] = useState(null);
+  const [NewbookTitle2, setNewbookTitle2] = useState(null);
   const [NewbookDescription, setNewbookDescription] = useState(null);
   const [workbook10, setWorkbook] = useState("");
   const [responseWorkbook, setResponseWorkbook] = useState(null);
@@ -210,86 +241,91 @@ export default function MyWorkbook() {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+  const handleCloseModal2 = () => {
+    setModalOpen2(false);
+  };
 
   const handleTitle = (e) => {
     const value = e.target.value;
     setNewbookTitle(value);
   };
+  const handleTitle2 = (e) => {
+    const value = e.target.value;
+    setNewbookTitle2(value);
+  };
+
   const handleExplanation = (e) => {
     const value = e.target.value;
     setNewbookDescription(value);
   };
 
-  //
-  /*   const handleNext = () => {
-    setPostData({
-      name: NewbookTitle,
-      explanation: NewbookDescription,
-    });
-  }; */
-
-  // POST 요청
-  const jwt = Token()[1]; //토큰
-
-  const [postData, setPostData] = useState({
-    name: null,
-    explanation: null,
-  });
-
-  const sendPostRequest = async () => {
-    setPostData({
-      name: NewbookTitle,
-      explanation: NewbookDescription,
-    });
-    console.log(postData);
-    try {
-      const apiUrl = "http://localhost:8080/workbook/create";
-
-      const headers = {
-        "Content-Type": "application/json",
-        "x-access-token": jwt,
-      };
-
-      const response = await axios.post(
-        apiUrl,
-        {
-          name: NewbookTitle,
-          explanation: NewbookDescription,
-        },
-        { headers }
-      );
-
-      console.log("문제집 생성 POST 응답 데이터:", response.data);
-      setResponseWorkbook(response.data);
-      console.log(responseWorkbook);
-    } catch (error) {
-      console.error("오류 발생:", error.message);
-    }
+  const handleButtonClick2 = () => {
+    navigate("/generate/step1");
   };
+  const [data, setData] = useState(null);
+  const userId = Token()[0];
+  const jwt = Token()[1];
 
-  // POST 이벤트 핸들러
-  const handleButtonClick = () => {
-    sendPostRequest();
-    setModalOpen(false);
+  const handleWorkbook1 = (book) => {
+    navigate("/book/12");
   };
+  const handleWorkbook2 = (book) => {
+    navigate("/book/23");
+  };
+  const handleWorkbook3 = (book) => {
+    navigate("/book/25");
+  };
+  /* useEffect(() => {
+    console.log("1");
+    const fetchData = async () => {
+      try {
+        console.log("2");
+        const response = await fetch("http://localhost:8080/subject/getAll", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "member-id": "2",
+          },
+        });
+        console.log("3");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        console.log("4");
+        console.log("name", result);
+        setData(result);
+        console.log("11000");
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []); */
+
+  // 가져온 데이터를 사용하여 화면에 렌더링하는 로직 추가
 
   //GET
   const sendGetRequest = async () => {
     try {
-      const apiUrl = "http://localhost:8080/workbook/get";
+      const apiUrl = "http://localhost:8080/subject/getAll";
 
       // 헤더 설정
       const headers = {
         "Content-Type": "application/json",
-        "x-access-token": jwt,
+        "member-id": 2,
       };
 
       //GET 요청 보내기
       const response = await axios.get(apiUrl, { headers });
 
+      console.log("문제집 GET 응답 데이터:", response.data.result[0].name);
       console.log("문제집 GET 응답 데이터:", response.data);
-      console.log("문제집 GET 응답 데이터:", response.data.result.getResults);
-      setWorkbook(response.data.result.getResults);
+      setBook(response.data.result[0].name);
+      setBook2(response.data.result[1].name);
+      setBook3(response.data.result[2].name);
     } catch (error) {
       console.error("오류 발생:", error.message);
     }
@@ -298,29 +334,62 @@ export default function MyWorkbook() {
     sendGetRequest();
   }, []);
 
-  const handleClick = (workbook_id, name) => {
-    navigate(`/myworkbook/${workbook_id}`, { state: { workbook_id, name } });
-  };
-
   return (
     <Wrap>
       <Header>
-        <Text>내 문제집</Text>
+        <Text>내 과목</Text>
         <Plus onClick={handlePlusClick}>+</Plus>
       </Header>
       <WorkbookWrap>
-        <Workbook />
+        <NewWrap>
+          <NewTitle onClick={handleWorkbook1}>{book}</NewTitle>
+        </NewWrap>
+        <NewWrap onClick={handleWorkbook2}>
+          <NewTitle>{book2}</NewTitle>
+        </NewWrap>
+        <NewWrap onClick={handleWorkbook3}>
+          <NewTitle>{book3}</NewTitle>
+        </NewWrap>
+        {/*   <NewWrap onClick={handleWorkbook}>
+          <NewTitle>자료구조</NewTitle>
+        </NewWrap>
+        <NewWrap onClick={handleWorkbook}>
+          <NewTitle>교양</NewTitle>
+        </NewWrap>
+        <NewWrap onClick={handleWorkbook}>
+          <NewTitle>이산구조</NewTitle>
+        </NewWrap>
+        <NewWrap onClick={handleWorkbook}>
+          <NewTitle>주제연구</NewTitle>
+        </NewWrap> */}
+        {/* {isModalOpen2 && (
+          <>
+            <ModalOverlay />
+            <Modal>
+              {/* 모달 내용 */}
+        {/*  <ModalTitle>생성할 문제집 이름을 적어주세요.</ModalTitle>
+              <InputWrap>
+                <TitleInput onChange={handleTitle2} placeholder="문제집 이름" />
+              </InputWrap>
+
+              <Close onClick={handleCloseModal2}>취소</Close>
+              <MakeButton onClick={handleButtonClick2}>생성</MakeButton>
+            </Modal>
+          </>
+        )} */}
+
+        {/*  <Workbook />
         {responseWorkbook && (
           <PutWrap
-            key={responseWorkbook.result.workbookId}
-            onClick={() =>
-              handleClick(responseWorkbook.result.workbookId, NewbookTitle)
-            }
-          >
+            key={responseWorkbook.result.subjectId}
+            /* onClick={() =>
+              handleClick(responseWorkbook.result.subjectId, NewbookTitle)
+            } */
+        /*  >
             <PutTitle>{NewbookTitle}</PutTitle>
             <PutDescription>{NewbookDescription}</PutDescription>
           </PutWrap>
-        )}
+        )} */}
       </WorkbookWrap>
 
       {isModalOpen && (
@@ -328,17 +397,18 @@ export default function MyWorkbook() {
           <ModalOverlay />
           <Modal>
             {/* 모달 내용 */}
-            <ModalTitle>생성할 문제집 이름, 설명을 적어주세요.</ModalTitle>
+            <ModalTitle>생성할 과목 이름을 적어주세요.</ModalTitle>
             <InputWrap>
-              <TitleInput onChange={handleTitle} placeholder="문제집 이름" />
-              <DesInput onChange={handleExplanation} placeholder="설명" />
+              <TitleInput onChange={handleTitle} placeholder="과목 이름" />
             </InputWrap>
 
             <Close onClick={handleCloseModal}>취소</Close>
-            <MakeButton onClick={handleButtonClick}>생성</MakeButton>
+            <MakeButton /* onClick={handleButtonClick} */>생성</MakeButton>
           </Modal>
         </>
       )}
     </Wrap>
   );
-}
+};
+
+export default MyWorkbook;

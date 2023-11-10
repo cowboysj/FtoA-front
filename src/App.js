@@ -12,6 +12,8 @@ import Book from "./Pages/Book";
 import Question from "./Pages/Question";
 import KakaoRedirect from "./Pages/KakaoRedirect";
 import AudioPage from "./Pages/AudioPage";
+import NewMain from "./Components/NewMain";
+import NewBook from "./Pages/NewBook";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
             <Route path="/myworkbook/:workbookid/:name" element={<Book />} />
             <Route path="/question" element={<Question />} />
             <Route path="/audio" element={<AudioPage />} />
+            <Route path="/newmain" element={<NewMain />} />
+            <Route path="/book/:bookid" element={<NewBook />} />
           </Routes>
         </div>
       </BrowserRouter>

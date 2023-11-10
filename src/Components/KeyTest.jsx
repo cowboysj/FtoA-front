@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
+import axios from "axios";
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,7 +48,34 @@ const Text1 = styled.div`
 const KeyTest = () => {
   const [inputFields, setInputFields] = useState([]);
   const [originalText, setOriginalText] = useState("");
+  //GET
+  const sendGetRequest = async () => {
+    try {
+      const apiUrl = "http://localhost:8080/workbook/get/9";
 
+      // 헤더 설정
+      const headers = {
+        "Content-Type": "application/json",
+        "member-id": 2,
+      };
+
+      //GET 요청 보내기
+      const response = await axios.get(apiUrl, { headers });
+
+      console.log("문제집 GET 응답 데이터:", response.data);
+      console.log(
+        "문제집 GET 응답 데이터2:",
+        response.data.result.text.content
+      );
+      setOriginalText(response.data.result.text.content);
+      /*  setWorkbook(response.data.result.getResults); */
+    } catch (error) {
+      console.error("오류 발생:", error.message);
+    }
+  };
+  useEffect(() => {
+    sendGetRequest();
+  }, []);
   useEffect(() => {
     // 서버에서 동적으로 생성된 빈칸의 수와 원본 텍스트를 가져오는 비동기 함수
     const fetchData = async () => {
@@ -58,21 +85,18 @@ const KeyTest = () => {
         // const data = await response.json();
 
         // 여기에서 서버에서 받은 데이터로 빈칸에 대한 입력 필드와 원본 텍스트를 설정
-        const data = {
+        /* const data = {
           blankCount: 3, // 임시 데이터 (실제로는 서버에서 받아야 함)
           originalText:
             "운영체제(operating system, 약칭: OS)은 사용자의 하드웨어, 시스템 리소스를 제어하고 <blank1> 대한 일반적 서비스를 지원하는 시스템 소프트웨어이다. 시스템 하드웨어를 관리할 뿐 아니라 응용 소프트웨어를 실행하기 위하여 하드웨어 추상화 플랫폼과 공통 시스템 <blank2>를 제공한다. 최근에는 가상화 기술의 발전에 힘입어 실제 하드웨어가 아닌 하이퍼바이저(가상 머신) 위에서 실<blank3> 한다.",
         };
-
-        setOriginalText(data.originalText);
-
-        const newInputFields = Array.from(
-          { length: data.blankCount },
-          (_, index) => ({
-            id: index + 1,
-            value: "",
-          })
-        );
+ */
+        /*  setOriginalText(data.originalText);
+         */
+        const newInputFields = Array.from({ length: 3 }, (_, index) => ({
+          id: index + 1,
+          value: "",
+        }));
 
         setInputFields(newInputFields);
       } catch (error) {

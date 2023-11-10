@@ -88,6 +88,9 @@ const alreadyUser = useSelector((state) => state.login.alreadyuser); */
     console.log(K_REST_API_KEY);
     window.location.href = kakaoURL;
   };
+  const handleNewClick = () => {
+    navigate("/newmain");
+  };
 
   return (
     <Div>
@@ -98,7 +101,8 @@ const alreadyUser = useSelector((state) => state.login.alreadyuser); */
         <MenuWrap>
           <Menu onClick={handleCommunityClick}>문제 생성</Menu>
           <Menu onClick={handleMyClick}>내 문제집</Menu>
-          <Menu onClick={handleAudioClick}>음성 요약</Menu>
+
+          <Menu onClick={handleNewClick}>망각곡선</Menu>
         </MenuWrap>
         <LoginButton onClick={handleKakaoLogin}>로그인</LoginButton>
       </Wrap>

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+
 const Wrap = styled.div`
   margin: 16px;
   padding-top: 10px;
@@ -185,11 +188,39 @@ export default function SaveCard() {
 
   const navigate = useNavigate();
 
+  const [quiz, setQuiz1] = useState(null);
+  //GET
+  const sendGetRequest = async () => {
+    try {
+      const apiUrl = "http://localhost:8080/workbook/get/9";
+
+      // 헤더 설정
+      const headers = {
+        "Content-Type": "application/json",
+        "member-id": 2,
+      };
+
+      //GET 요청 보내기
+      const response = await axios.get(apiUrl, { headers });
+
+      console.log("문제집 GET 응답 데이터:", response.data.result.quiz[0]);
+      setQuiz1(response.data.result.quiz[0]);
+      console.log("문제집 GET 응답 데이터2:", response.data.result);
+      /*  setOriginalText(response.data.result.text.content); */
+      /*  setWorkbook(response.data.result.getResults); */
+    } catch (error) {
+      console.error("오류 발생:", error.message);
+    }
+  };
+  useEffect(() => {
+    sendGetRequest();
+  }, []);
+
   return (
     <Wrap>
-      <Problem>{Problem2}</Problem>
+      <Problem>{quiz.question}</Problem>
       <HintWrap>
-        <Hint>힌트 보기</Hint>
+        <Hint>정답 보기</Hint>
         <Save onClick={handleSaveClick}>저장</Save>
         {isModalOpen && (
           <>

@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import QuizCard from "./QuizCard";
+
 import SaveCard from "./SaveCard";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import QuizCard from "./QuizCard";
 
 const Text1 = styled.div`
   display: flex;
@@ -65,11 +69,12 @@ export default function NewQuiz() {
     <Wrap>
       <Text1>문제 생성 유형 </Text1>
       <QuizWrap>
+        {/*  <SaveCard />
         <SaveCard />
         <SaveCard />
         <SaveCard />
-        <SaveCard />
-        <SaveCard />
+        <SaveCard /> */}
+        <QuizCard />
       </QuizWrap>
     </Wrap>
   );
