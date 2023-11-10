@@ -185,7 +185,7 @@ export default function GenerateStep2() {
       SubNo: Num2,
     });
 
-    navigate("/generate/loading");
+    navigate("/question2");
     console.log(Content22);
     console.log(Num1);
     console.log(Num2);
@@ -213,7 +213,6 @@ export default function GenerateStep2() {
 
       const response = await axios.post(
         apiUrl,
-
         {
           workbookId: 19,
           text: Text,

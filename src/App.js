@@ -14,6 +14,7 @@ import KakaoRedirect from "./Pages/KakaoRedirect";
 import AudioPage from "./Pages/AudioPage";
 import NewMain from "./Components/NewMain";
 import NewBook from "./Pages/NewBook";
+import Question2 from "./Pages/Question2";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/audio" element={<AudioPage />} />
             <Route path="/newmain" element={<NewMain />} />
             <Route path="/book/:bookid" element={<NewBook />} />
+            <Route path="/question2" element={<Question2 />} />
           </Routes>
         </div>
       </BrowserRouter>

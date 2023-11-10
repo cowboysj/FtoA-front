@@ -90,7 +90,7 @@ const Hint = styled.div`
   color: white;
 `;
 
-export default function QuizCard() {
+export default function QuizCard2() {
   const Problem2 =
     "임진왜란은 어떤 기간 동안 발생했으며, 어떤 국가와의 전쟁이었나요?";
 
@@ -115,7 +115,7 @@ export default function QuizCard() {
   //GET
   const sendGetRequest = async () => {
     try {
-      const apiUrl = "http://localhost:8080/workbook/get/9";
+      const apiUrl = "http://localhost:8080/workbook/get/19";
 
       // 헤더 설정
       const headers = {
@@ -154,10 +154,10 @@ export default function QuizCard() {
     <Div>
       <Wrap className={isFlipped ? "flipped" : ""}>
         <FlippedContent onClick={handleHintClick} visible={isFlipped}>
-          운영체제
+          반복학습
         </FlippedContent>
         <Problem visible={!isFlipped}>
-          컴퓨터의 핵심 소프트웨어는 무엇인가요?
+          기억을 유지하기 위해서는 무엇을 하는가?
         </Problem>
         <HintWrap visible={!isFlipped} onClick={handleHintClick}>
           <Hint>정답 보기</Hint>
@@ -165,19 +165,19 @@ export default function QuizCard() {
       </Wrap>
       <Wrap className={isFlipped ? "flipped" : ""}>
         <FlippedContent onClick={handleHintClick2} visible={isFlipped}>
-          소프트웨어
+          손실
         </FlippedContent>
-        <Problem visible={!isFlipped}>운영체제란 무엇인가?</Problem>
+        <Problem visible={!isFlipped}>"기억의 손실은 무엇인가?</Problem>
         <HintWrap visible={!isFlipped} onClick={handleHintClick2}>
           <Hint>정답 보기</Hint>
         </HintWrap>
       </Wrap>
       <Wrap className={isFlipped ? "flipped" : ""}>
         <FlippedContent onClick={handleHintClick3} visible={isFlipped}>
-          운영체제
+          19세기
         </FlippedContent>
         <Problem visible={!isFlipped}>
-          운영체제에서 사용자의 데이터를 저장하는 기능은 무엇인가?
+          망각 곡선 가설은 언제 처음 발견되었는가?
         </Problem>
         <HintWrap visible={!isFlipped} onClick={handleHintClick3}>
           <Hint>정답 보기</Hint>
