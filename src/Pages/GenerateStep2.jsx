@@ -207,16 +207,16 @@ export default function GenerateStep2() {
 
       const headers = {
         "Content-Type": "application/json",
-        "x-access-token": jwt,
+        "member-id": 2,
       };
 
       const response = await axios.post(
         apiUrl,
         {
+          workbookId: 19,
           text: Content22,
-          BlankNo: Num1,
-          SubNo: Num2,
-          keyWords: ["오퍼레이팅"],
+          blankNo: 3,
+          subNo: 2,
         },
         { headers }
       );

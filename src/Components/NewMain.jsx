@@ -328,7 +328,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book3} 망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book3}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content>
             <Content2>
               <ContentTitle>{book4}</ContentTitle>
@@ -336,7 +336,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book5} 망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book5}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content2>
             <Content3>
               <ContentTitle>{book6}</ContentTitle>
@@ -344,7 +344,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book7}망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book7}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content3>
             <Content4>
               <ContentTitle>{book8}</ContentTitle>
@@ -352,7 +352,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book9} 망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book9}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content4>
             <Content5>
               <ContentTitle>{book10}</ContentTitle>
@@ -360,7 +360,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book11} 망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book11}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content5>
           </ContentWrap2>
         </ContentWrap>
@@ -376,7 +376,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book14}망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book14}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content>
             <Content2>
               <ContentTitle>{book15}</ContentTitle>
@@ -384,7 +384,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book16} 망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book16}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content2>
             <Content3>
               <ContentTitle>{book17}</ContentTitle>
@@ -392,7 +392,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book18} 망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book18}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content3>
             <Content4>
               <ContentTitle>{book19}</ContentTitle>
@@ -400,7 +400,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book20}망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book20}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content4>
             <Content5>
               <ContentTitle>{book21}</ContentTitle>
@@ -408,7 +408,7 @@ export default function NewMain() {
                 운영체제은 사용자의 하드웨어, 시스템 리소스를 제어하고
                 프로그램에 대한 일반적
               </ContentSum> */}
-              <Warning>{book22} 망각했어요 빨리 복습하세요!!🚨</Warning>
+              <Warning>{book22}% 망각했어요 빨리 복습하세요!!🚨</Warning>
             </Content5>
           </ContentWrap2>
         </ContentWrap>

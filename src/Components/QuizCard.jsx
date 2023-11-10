@@ -118,10 +118,13 @@ export default function QuizCard() {
       //GET 요청 보내기
       const response = await axios.get(apiUrl, { headers });
 
-      console.log("문제집 GET 응답 데이터:", response);
-      /*       setQuiz1(response.data.result.quiz[0]);
+      console.log(
+        "문제집 GET 응답 데이터:",
+        response.data.result.quiz[0].question
+      );
+      setQuiz1(response.data.result.quiz[0]);
       setQuiz2(response.data.result.quiz[1]);
-      setQuiz3(response.data.result.quiz[2]); */
+      setQuiz3(response.data.result.quiz[2]);
       /*  console.log("문제집 GET 응답 데이터2:", response.data.result); */
       /*  setOriginalText(response.data.result.text.content); */
       /*  setWorkbook(response.data.result.getResults); */
