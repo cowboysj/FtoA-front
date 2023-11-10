@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import Keyword from "../Components/Keyword";
 import NewQuiz from "../Components/NewQuiz";
+import KeyTest from "../Components/KeyTest";
 
 const Wrap = styled.div`
   display: flex;
@@ -43,7 +44,7 @@ export default function Question() {
       <Header>
         <Text>요청한 문제를 만들었어요! </Text>
       </Header>
-      <Keyword />
+      <KeyTest />
       <NewQuiz />
     </Wrap>
   );

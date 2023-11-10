@@ -33,6 +33,9 @@ const Text = styled.div`
   margin: 8%;
 `;
 export default function GenerateLoading() {
+
+/* response 받으면 navigate */
+
   return (
     <Wrap>
       <Text>AI가 문제를 열심히 만들고 있어요!</Text>

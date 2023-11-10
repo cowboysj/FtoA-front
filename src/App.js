@@ -10,6 +10,8 @@ import Workbook from "./Pages/MyWorkbook";
 import MyWorkbook from "./Pages/MyWorkbook";
 import Book from "./Pages/Book";
 import Question from "./Pages/Question";
+import KakaoRedirect from "./Pages/KakaoRedirect";
+import AudioPage from "./Pages/AudioPage";
 
 function App() {
   return (
@@ -19,12 +21,15 @@ function App() {
           <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
+            {<Route path="/oauth" element={<KakaoRedirect />} />}
+            {/*kakao Redirect 화면 */}
             <Route path="/generate/step1" element={<GenerateStep1 />} />
             <Route path="/generate/step2" element={<GenerateStep2 />} />
             <Route path="/generate/loading" element={<GenerateLoading />} />
             <Route path="/myworkbook" element={<MyWorkbook />} />
-            <Route path="/myworkbook/:workbookid" element={<Book />} />
+            <Route path="/myworkbook/:workbookid/:name" element={<Book />} />
             <Route path="/question" element={<Question />} />
+            <Route path="/audio" element={<AudioPage />} />
           </Routes>
         </div>
       </BrowserRouter>

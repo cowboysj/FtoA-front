@@ -64,7 +64,7 @@ const Complete = styled.div`
 
 export default function Book() {
   const { state } = useLocation();
-  console.log(state);
+  console.log("특정 문제집", state);
   const [copied, setCopied] = useState(false);
 
   const handleCopyClick = () => {
@@ -97,7 +97,7 @@ export default function Book() {
   return (
     <Wrap>
       <Header>
-        <Text>{state.Name}</Text>
+        <Text>{state.name}</Text>
         <Share copied={copied} onClick={handleCopyClick}>
           문제집 공유
         </Share>

@@ -19,10 +19,20 @@ const Kakao = styled.img`
   cursor: pointer;
 `;
 export default function Home() {
+  const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
+
+  const K_REDIRECT_URI = `http://localhost:3000/oauth`;
+
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
+
+  const handleKakaoLogin = () => {
+    console.log(K_REST_API_KEY);
+    window.location.href = kakaoURL;
+  };
   return (
     <Wrap>
       <FlyingText />
-      <Kakao src={login} />
+      <Kakao onClick={handleKakaoLogin} src={login} />
     </Wrap>
   );
 }

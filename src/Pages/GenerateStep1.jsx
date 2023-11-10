@@ -44,7 +44,7 @@ const Content = styled.textarea`
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
   color: #000;
   font-family: Pretendard;
-  font-size: 13px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
@@ -69,20 +69,6 @@ const NextButton = styled.div`
   background: #000;
   color: white;
 `;
-const FileInput = styled.input`
-  width: 200px;
-  margin-top: 20px;
-  height: 30px;
-  background: #fff;
-  border: none;
-
-  &::file-selector-button {
-    &:hover {
-      background: rgb(77, 77, 77);
-      color: #fff;
-    }
-  }
-`;
 
 export default function GenerateStep1() {
   const dispatch = useDispatch();
@@ -103,7 +89,6 @@ export default function GenerateStep1() {
         onChange={handleInputChange}
         placeholder="내용을 입력해주세요."
       />
-      <FileInput type="file" accept=".mp3" />
 
       <ButtonWrap>
         <NextButton onClick={handleStep2}>다음</NextButton>
