@@ -209,12 +209,14 @@ export default function GenerateStep2() {
         "Content-Type": "application/json",
         "member-id": 2,
       };
+      const Text = JSON.stringify(Content22);
 
       const response = await axios.post(
         apiUrl,
+
         {
           workbookId: 19,
-          text: Content22,
+          text: Text,
           blankNo: 3,
           subNo: 2,
         },
@@ -231,7 +233,6 @@ export default function GenerateStep2() {
   // POST 이벤트 핸들러
   const handleButtonClick = () => {
     handleStep2();
-
     sendPostRequest();
   };
 
