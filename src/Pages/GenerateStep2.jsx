@@ -185,7 +185,7 @@ export default function GenerateStep2() {
       SubNo: Num2,
     });
 
-    navigate("/question2");
+    navigate("/generate/loading");
     console.log(Content22);
     console.log(Num1);
     console.log(Num2);

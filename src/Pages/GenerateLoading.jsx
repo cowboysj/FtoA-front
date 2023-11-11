@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Spinner from "../Components/Spinner";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Wrap = styled.div`
   display: flex;
@@ -33,8 +34,21 @@ const Text = styled.div`
   margin: 8%;
 `;
 export default function GenerateLoading() {
+  const navigate = useNavigate();
 
-/* response 받으면 navigate */
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      try {
+        navigate("/question2");
+      } catch (error) {
+        console.error("오류 발생:", error.message);
+      }
+    }, 5000);
+
+    // Clean up the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []);
+  /* response 받으면 navigate */
 
   return (
     <Wrap>
