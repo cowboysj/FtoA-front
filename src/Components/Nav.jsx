@@ -34,12 +34,15 @@ const Logo = styled.img`
 const MenuWrap = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 80%;
 `;
 
 const Menu = styled.div`
   display: flex;
-  padding-left: 10%;
+  align-items: center;
+  justify-content: center;
+  padding: 0% 3%;
   font-weight: 600;
   font-size: 20px;
   cursor: pointer;
@@ -48,13 +51,11 @@ const Menu = styled.div`
 
 const LoginButton = styled.div`
   display: flex;
-  background-color: pink;
   cursor: pointer;
   font-family: "Pretendard";
   justify-content: center;
   align-items: center;
   padding: 10px 16px;
-
   border-radius: 30px;
   background: #000;
   color: white;
@@ -91,6 +92,19 @@ const alreadyUser = useSelector((state) => state.login.alreadyuser); */
   const handleNewClick = () => {
     navigate("/newmain");
   };
+  //강의 자료 요약
+  const handleStep1Click = () => {
+    navigate("/step1");
+  };
+  const handleStep3Click = () => {
+    navigate("/step3");
+  };
+  const handleStep4Click = () => {
+    navigate("/step4");
+  };
+  const handleStep5Click = () => {
+    navigate("/step5");
+  };
 
   return (
     <Div>
@@ -99,10 +113,13 @@ const alreadyUser = useSelector((state) => state.login.alreadyuser); */
           <Logo src={logo} alt="로고" />
         </LogoWrap>
         <MenuWrap>
-          <Menu onClick={handleCommunityClick}>문제 생성</Menu>
-          <Menu onClick={handleMyClick}>내 문제집</Menu>
-
-          <Menu onClick={handleNewClick}>망각곡선</Menu>
+          <Menu onClick={handleStep1Click}>강의 자료 요약</Menu>
+          <Menu onClick={handleCommunityClick}>퀴즈 생성</Menu>
+          <Menu onClick={handleStep3Click}>오답 노트</Menu>
+          {/*  <Menu onClick={handleMyClick}>내 문제집</Menu> */}
+          {/* <Menu onClick={handleNewClick}>망각곡선</Menu> */}
+          <Menu onClick={handleStep4Click}>취약 유형 분석</Menu>
+          <Menu onClick={handleStep5Click}> 과목 추천 시스템</Menu>
         </MenuWrap>
         <LoginButton onClick={handleKakaoLogin}>로그인</LoginButton>
       </Wrap>

@@ -103,10 +103,10 @@ export default function QuizCard2() {
     setIsFlipped(!isFlipped);
   };
   const handleHintClick2 = () => {
-    setIsFlipped2(!isFlipped);
+    setIsFlipped2(!isFlipped2);
   };
   const handleHintClick3 = () => {
-    setIsFlipped3(!isFlipped);
+    setIsFlipped3(!isFlipped3);
   };
 
   const [quiz, setQuiz1] = useState(null);
