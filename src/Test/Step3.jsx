@@ -7,6 +7,7 @@ import { setContentValue } from "../Redux/ContentSlice";
 const Wrap = styled.div`
   display: flex;
   width: 80%;
+
   margin: 0 auto;
   padding-top: 2%;
   flex-direction: column;
@@ -41,6 +42,7 @@ const Content = styled.div`
   width: 90%;
   height: 90%;
   flex-direction: column;
+  margin-bottom: 50px;
 `;
 const Container = styled.div`
   display: flex;
