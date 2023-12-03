@@ -42,7 +42,7 @@ const Menu = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0% 3%;
+  padding: 0% 2%;
   font-weight: 600;
   font-size: 20px;
   cursor: pointer;
@@ -113,15 +113,15 @@ const alreadyUser = useSelector((state) => state.login.alreadyuser); */
           <Logo src={logo} alt="로고" />
         </LogoWrap>
         <MenuWrap>
-          <Menu onClick={handleStep1Click}>강의 자료 요약</Menu>
-          <Menu onClick={handleCommunityClick}>퀴즈 생성</Menu>
-          <Menu onClick={handleStep3Click}>오답 노트</Menu>
+          <Menu onClick={handleStep1Click}>강의 자료 요약📝</Menu>
+          <Menu onClick={handleCommunityClick}>퀴즈 생성❓</Menu>
+          <Menu onClick={handleStep3Click}>오답 노트🔍</Menu>
           {/*  <Menu onClick={handleMyClick}>내 문제집</Menu> */}
           {/* <Menu onClick={handleNewClick}>망각곡선</Menu> */}
-          <Menu onClick={handleStep4Click}>취약 유형 분석</Menu>
-          <Menu onClick={handleStep5Click}> 과목 추천 시스템</Menu>
+          <Menu onClick={handleStep4Click}>취약 유형 분석📈</Menu>
+          <Menu onClick={handleStep5Click}> 과목 추천 시스템📊</Menu>
         </MenuWrap>
-        <LoginButton onClick={handleKakaoLogin}>로그인</LoginButton>
+        <LoginButton onClick={handleKakaoLogin}>쿠옹</LoginButton>
       </Wrap>
     </Div>
   );
