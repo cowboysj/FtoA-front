@@ -16,10 +16,15 @@ import NewMain from "./Components/NewMain";
 import NewBook from "./Pages/NewBook";
 import Question2 from "./Pages/Question2";
 import Step1 from "./Test/Step1";
-import Step2 from "./Test/Step2";
 import Step3 from "./Test/Step3";
 import Step4 from "./Test/Step4";
 import Step5 from "./Test/Step5";
+import Step13 from "./Test/Step13";
+import Step12 from "./Test/Step12";
+import Step21 from "./Test/Step21";
+import Step22 from "./Test/Step22";
+import Step23 from "./Test/Step23";
+import Step2Loading from "./Test/Step2Loading";
 
 function App() {
   return (
@@ -33,8 +38,14 @@ function App() {
             {/*kakao Redirect 화면 */}
             {<Route path="/step1" element={<Step1 />} />}
             {/*step1 */}
-            {<Route path="/step2" element={<Step2 />} />}
+            {<Route path="/step12" element={<Step12 />} />}
+            {<Route path="/step13" element={<Step13 />} />}
             {/*step2 */}
+            {<Route path="/step21" element={<Step21 />} />}
+            {<Route path="/step22" element={<Step22 />} />}
+            {<Route path="/step23" element={<Step23 />} />}
+            {<Route path="/step2loading" element={<Step2Loading />} />}
+
             {<Route path="/step3" element={<Step3 />} />}
             {/*step3 */}
             {<Route path="/step4" element={<Step4 />} />}

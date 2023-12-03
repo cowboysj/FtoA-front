@@ -69,7 +69,7 @@ export default function Nav() {
     navigate("/");
   };
   const handleCommunityClick = () => {
-    navigate("/generate/step1");
+    navigate("/step21");
   };
   const handleMyClick = () => {
     navigate("/myworkbook");

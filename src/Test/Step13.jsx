@@ -5,7 +5,6 @@ import axios from "axios";
 const Wrap = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 0 auto;
   flex-direction: column;
   width: 80vw;
@@ -26,6 +25,7 @@ const Wrap = styled.div`
 const Content = styled.div`
   display: flex;
   padding: 15px;
+  height: 50vh;
   width: 90%;
   margin: 0 auto;
   background: #fafafa;
@@ -40,16 +40,17 @@ const Content = styled.div`
 `;
 const Text1 = styled.div`
   display: flex;
-  height: 7%;
+  height: 50px;
+  align-items: center;
   color: #000;
   font-family: Pretendard;
   font-size: 25px;
   font-weight: 600;
   margin: 20px;
-  margin-left: 30px;
+  margin-left: 40px;
 `;
 
-const Step2 = () => {
+const Step13 = () => {
   const [inputFields, setInputFields] = useState([]);
   const [originalText, setOriginalText] = useState("");
   //GET
@@ -130,10 +131,16 @@ const Step2 = () => {
 
   return (
     <Wrap>
-      <Text1>키워드 가리기 유형</Text1>
-      <Content>요약본</Content>
+      <Text1>생성된 요약본입니다!</Text1>
+      <Content>
+        데이터베이스는 정보를 구조화하여 저장하고 관리하는 시스템으로, 컴퓨터
+        시스템에서 여러 사용자가 동시에 접근할 수 있도록 설계됩니다. 이는
+        데이터를 효율적으로 저장하고 조작할 수 있는 기능을 제공하며, 관계형과
+        NoSQL 데이터베이스 등 다양한 유형이 있습니다. 데이터베이스는 기업 업무,
+        인터넷 서비스, 은행 시스템, 학교 관리 등 다양한 분야에서 활용됩니다.
+      </Content>
     </Wrap>
   );
 };
 
-export default Step2;
+export default Step13;

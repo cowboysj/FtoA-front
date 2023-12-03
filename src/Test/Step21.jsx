@@ -70,12 +70,11 @@ const NextButton = styled.div`
   color: white;
 `;
 
-export default function Step1() {
+export default function Step21() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleStep2 = () => {
-    navigate("/step12");
+    navigate("/step22");
   };
 
   const handleInputChange = (e) => {
@@ -85,14 +84,14 @@ export default function Step1() {
 
   return (
     <Wrap>
-      <Text>요약할 글을 입력해주세요.</Text>
+      <Text>문제를 생성할 내용을 입력해주세요.</Text>
       <Content
         onChange={handleInputChange}
         placeholder="내용을 입력해주세요."
       />
 
       <ButtonWrap>
-        <NextButton onClick={handleStep2}>완료</NextButton>
+        <NextButton onClick={handleStep2}>다음</NextButton>
       </ButtonWrap>
     </Wrap>
   );
