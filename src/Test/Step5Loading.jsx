@@ -33,13 +33,13 @@ const Text = styled.div`
   font-weight: 700;
   margin: 8%;
 `;
-export default function Step2Loading() {
+export default function Step5Loading() {
   const navigate = useNavigate();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       try {
-        navigate("/step23");
+        navigate("/step5result");
       } catch (error) {
         console.error("오류 발생:", error.message);
       }
@@ -52,7 +52,7 @@ export default function Step2Loading() {
 
   return (
     <Wrap>
-      <Text>AI가 문제를 열심히 만들고 있어요!</Text>
+      <Text>AI가 제출한 시간표를 기반으로 과목을 추천하고 있어요!</Text>
       <Spinner />
     </Wrap>
   );

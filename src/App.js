@@ -25,6 +25,8 @@ import Step21 from "./Test/Step21";
 import Step22 from "./Test/Step22";
 import Step23 from "./Test/Step23";
 import Step2Loading from "./Test/Step2Loading";
+import Step5Loading from "./Test/Step5Loading";
+import Step5Result from "./Test/Step5Result";
 
 function App() {
   return (
@@ -45,12 +47,14 @@ function App() {
             {<Route path="/step22" element={<Step22 />} />}
             {<Route path="/step23" element={<Step23 />} />}
             {<Route path="/step2loading" element={<Step2Loading />} />}
+            {<Route path="/step5result" element={<Step5Result />} />}
 
             {<Route path="/step3" element={<Step3 />} />}
             {/*step3 */}
             {<Route path="/step4" element={<Step4 />} />}
             {/*step4 */}
             {<Route path="/step5" element={<Step5 />} />}
+            {<Route path="/step5loading" element={<Step5Loading />} />}
             {/*step5 */}
 
             <Route path="/generate/step1" element={<GenerateStep1 />} />
