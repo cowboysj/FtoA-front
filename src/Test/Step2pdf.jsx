@@ -79,7 +79,7 @@ const NextButton = styled.div`
   color: white;
 `;
 
-export default function Step1() {
+export default function Step2pdf() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -120,11 +120,11 @@ export default function Step1() {
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
   const handleSubmit = () => {
-    navigate("/step12");
+    navigate("/step2loading");
   };
   return (
     <Wrap>
-      <Text>요약할 글을 업로드해주세요</Text>
+      <Text>퀴즈를 만들 자료를 업로드해주세요.</Text>
       <Div>
         <input type="file" onChange={onFileChange} />
 
