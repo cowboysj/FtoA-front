@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -11,6 +13,7 @@ const Wrap = styled.div`
   margin: 0 auto;
   padding-top: 2%;
   flex-direction: column;
+  align-items: center;
 
   /* 수직 스크롤바 스타일링 */
   ::-webkit-scrollbar {
@@ -25,6 +28,12 @@ const Wrap = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* 스크롤바 호버 시 색상 변경 */
   }
+`;
+const Div = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
 `;
 
 const Text = styled.div`
@@ -83,17 +92,120 @@ export default function Step1() {
     dispatch(setContentValue(value));
   };
 
+  //pdf
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [file, setFile] = useState(null);
+
+  const onFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+      setFile(selectedFile);
+      setPageNumber(1); // Reset page number when a new file is selected
+    }
+  };
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
+  const goToPrevPage = () => {
+    setPageNumber((prevPageNumber) => Math.max(prevPageNumber - 1, 1));
+  };
+
+  const goToNextPage = () => {
+    setPageNumber((prevPageNumber) => Math.min(prevPageNumber + 1, numPages));
+  };
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+  const handleSubmit = () => {
+    navigate("/step12");
+  };
   return (
     <Wrap>
       <Text>요약할 글을 입력해주세요.</Text>
-      <Content
-        onChange={handleInputChange}
-        placeholder="내용을 입력해주세요."
-      />
+      <Div>
+        <input type="file" onChange={onFileChange} />
 
-      <ButtonWrap>
-        <NextButton onClick={handleStep2}>완료</NextButton>
-      </ButtonWrap>
+        {file && (
+          <PdfViewerContainer>
+            <PdfViewerButtons>
+              <PdfViewerButton
+                onClick={goToPrevPage}
+                disabled={pageNumber <= 1}
+              >
+                이전 페이지
+              </PdfViewerButton>
+              <Submit onClick={handleSubmit}>제출</Submit>
+              <PdfViewerButton
+                onClick={goToNextPage}
+                disabled={pageNumber >= numPages}
+              >
+                다음 페이지
+              </PdfViewerButton>
+            </PdfViewerButtons>
+            <PageNumber>
+              Page {pageNumber} of {numPages}
+            </PageNumber>
+            <Document
+              file={URL.createObjectURL(file)}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              <Page width={500} height={720} pageNumber={pageNumber} />
+            </Document>
+          </PdfViewerContainer>
+        )}
+      </Div>
     </Wrap>
   );
 }
+const PdfViewerContainer = styled.div`
+  margin-top: 20px;
+  height: 90vh;
+  width: 50vw;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PdfViewerButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  width: 50%;
+`;
+
+const PdfViewerButton = styled.button`
+  padding: 5px 10px;
+  border: none;
+  background-color: black;
+  color: #fff;
+  font-family: "Pretendard";
+  cursor: pointer;
+  border-radius: 30px;
+`;
+const Submit = styled.button`
+  padding: 5px 10px;
+  border: none;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  font-family: "Pretendard";
+  cursor: pointer;
+  border-radius: 8px;
+  width: 80px;
+  font-size: 16px;
+  font-weight: 600;
+  &:hover {
+    background-color: darkgreen;
+    color: white;
+  }
+`;
+
+const PageNumber = styled.div`
+  font-family: "Pretendard";
+  font-weight: 500;
+  margin-bottom: 3px;
+`;

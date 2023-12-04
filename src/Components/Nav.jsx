@@ -94,7 +94,7 @@ const alreadyUser = useSelector((state) => state.login.alreadyuser); */
   };
   //강의 자료 요약
   const handleStep1Click = () => {
-    navigate("/step1");
+    navigate("/step1select");
   };
   const handleStep3Click = () => {
     navigate("/step3");

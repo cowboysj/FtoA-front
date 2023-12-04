@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
+import React, { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
 
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setContentValue } from "../Redux/ContentSlice";
 const Wrap = styled.div`
   display: flex;
-  justify-content: center;
+  width: 90%;
+  height: 80vh;
   margin: 0 auto;
+  padding-top: 2%;
   flex-direction: column;
-  width: 80vw;
+  align-items: center;
+
   /* 수직 스크롤바 스타일링 */
   ::-webkit-scrollbar {
     width: 10px; /* 스크롤바 너비 */
@@ -22,125 +29,102 @@ const Wrap = styled.div`
     background-color: #555; /* 스크롤바 호버 시 색상 변경 */
   }
 `;
-const Content = styled.div`
+
+const Text = styled.div`
   display: flex;
-  padding: 15px;
-  height: 50vh;
-  width: 90%;
-  margin: 0 auto;
-  background: #fafafa;
-  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+  height: 10%;
   color: #000;
   font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 30px; /* 225% */
-  overflow: scroll;
-`;
-const Text1 = styled.div`
-  display: flex;
-  height: 50px;
-  align-items: center;
-  color: #000;
-  font-family: Pretendard;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 600;
-  margin: 20px;
-  margin-left: 40px;
+  margin-bottom: 20px;
 `;
 
-const Step13 = () => {
-  const [inputFields, setInputFields] = useState([]);
-  const [originalText, setOriginalText] = useState("");
-  //GET
-  const sendGetRequest = async () => {
-    try {
-      const apiUrl = "http://localhost:8080/workbook/get/19";
-
-      // 헤더 설정
-      const headers = {
-        "Content-Type": "application/json",
-        "member-id": 2,
-      };
-
-      //GET 요청 보내기
-      const response = await axios.get(apiUrl, { headers });
-
-      console.log("문제집 GET 응답 데이터:", response.data);
-      console.log(
-        "문제집 GET 응답 데이터2:",
-        response.data.result.text.content
-      );
-      setOriginalText(response.data.result.text.content);
-      /*  setWorkbook(response.data.result.getResults); */
-    } catch (error) {
-      console.error("오류 발생:", error.message);
-    }
-  };
-  useEffect(() => {
-    sendGetRequest();
-  }, []);
-  useEffect(() => {
-    // 서버에서 동적으로 생성된 빈칸의 수와 원본 텍스트를 가져오는 비동기 함수
-    const fetchData = async () => {
-      try {
-        // 서버에서 데이터를 가져오는 로직을 구현
-        // 예: const response = await fetch('/api/getBlankCountAndText');
-        // const data = await response.json();
-
-        // 여기에서 서버에서 받은 데이터로 빈칸에 대한 입력 필드와 원본 텍스트를 설정
-        /* const data = {
-          blankCount: 3, // 임시 데이터 (실제로는 서버에서 받아야 함)
-          originalText:
-            "운영체제(operating system, 약칭: OS)은 사용자의 하드웨어, 시스템 리소스를 제어하고 <blank1> 대한 일반적 서비스를 지원하는 시스템 소프트웨어이다. 시스템 하드웨어를 관리할 뿐 아니라 응용 소프트웨어를 실행하기 위하여 하드웨어 추상화 플랫폼과 공통 시스템 <blank2>를 제공한다. 최근에는 가상화 기술의 발전에 힘입어 실제 하드웨어가 아닌 하이퍼바이저(가상 머신) 위에서 실<blank3> 한다.",
-        };
- */
-        /*  setOriginalText(data.originalText);
-         */
-        const newInputFields = Array.from({ length: 3 }, (_, index) => ({
-          id: index + 1,
-          value: "",
-        }));
-
-        setInputFields(newInputFields);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const handleInputChange = (id, value) => {
-    setInputFields((prevFields) =>
-      prevFields.map((field) => (field.id === id ? { ...field, value } : field))
-    );
-  };
-
-  const renderTextWithInputs = () => {
-    let result = originalText;
-    inputFields.forEach((field) => {
-      result = result.replace(
-        `<blank${field.id}>`,
-        `<input type="text" value="${field.value}" />`
-      );
-    });
-    return <div dangerouslySetInnerHTML={{ __html: result }} />;
-  };
+export default function Step13() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <Wrap>
-      <Text1>생성된 요약본입니다!</Text1>
+      <Text>요약본</Text>
       <Content>
-        데이터베이스는 정보를 구조화하여 저장하고 관리하는 시스템으로, 컴퓨터
-        시스템에서 여러 사용자가 동시에 접근할 수 있도록 설계됩니다. 이는
-        데이터를 효율적으로 저장하고 조작할 수 있는 기능을 제공하며, 관계형과
-        NoSQL 데이터베이스 등 다양한 유형이 있습니다. 데이터베이스는 기업 업무,
-        인터넷 서비스, 은행 시스템, 학교 관리 등 다양한 분야에서 활용됩니다.
+        <Heading>데이터베이스란?</Heading>
+        <Body>
+          데이터베이스는 전자적으로 저장되고 체계적인 데이터 모음입니다.
+          여기에는 단어, 숫자, 이미지, 비디오 및 파일을 포함한 모든 유형의
+          데이터가 포함될 수 있습니다. DBMS (데이터베이스 관리 시스템) 라는
+          소프트웨어를 사용하여 데이터를 저장, 검색 및 편집할 수 있습니다.
+          컴퓨터 시스템에서 데이터베이스라는 단어는 모든 DBMS, 데이터베이스
+          시스템 또는 데이터베이스와 관련된 응용 프로그램을 나타낼 수도
+          있습니다.
+        </Body>
+        <Heading>데이터베이스가 중요한 이유?</Heading>
+        <Heading2>효율적인 확장</Heading2>
+        <Body>
+          데이터베이스 애플리케이션은 수백만, 수십억 개 등으로 확장하여 대량의
+          데이터를 관리할 수 있습니다. 데이터베이스 없이는 이렇게 많은 양의
+          디지털 데이터를 저장할 수 없습니다.
+        </Body>
+        <Heading2>데이터 무결성</Heading2>
+        <Body>
+          데이터베이스에는 데이터 일관성을 유지하기 위한 기본 제공 규칙 및
+          조건이 있는 경우가 많습니다.
+        </Body>
+        <Heading2>데이터 보안</Heading2>
+        <Body>
+          데이터베이스는 모든 데이터와 관련된 개인정보 보호 및 규정 준수 요구
+          사항을 지원합니다. 예를 들어 데이터베이스에 액세스하려면 사용자가
+          로그인해야 합니다. 사용자마다 액세스 수준이 다를 수 있습니다(예: 읽기
+          전용).
+        </Body>
+        <Heading>데이터베이스의 유형에는 어떤 것들이 있나요?</Heading>
+        <Body>
+          데이터베이스를 사용 사례, 데이터 유형 및 데이터 저장 방법에 따라
+          분류할 수 있습니다. 다음은 데이터베이스를 분류하는 세 가지 방법입니다.
+          문서 텍스트, 통계 또는 멀티미디어 객체와 같은 콘텐츠 기준 회계, 영화
+          또는 제조와 같은 적용 분야 기준 데이터베이스 구조 또는 인터페이스
+          유형과 같은 기술적 측면 기준
+        </Body>
+        <Heading>데이터베이스 모델이란?</Heading>
+        <Body>
+          데이터베이스 모델은 데이터베이스의 논리적 구조를 보여줍니다. 데이터를
+          저장, 구성 및 조작할 수 있는 방법을 결정하는 관계와 규칙을 정의합니다.
+          각 데이터베이스 애플리케이션은 특정 데이터 모델을 기반으로 구축됩니다.
+          개별 데이터베이스 모델은 기본 애플리케이션이 채택하는 광범위한 데이터
+          모델의 규칙과 개념을 기반으로 설계되었습니다.
+        </Body>
+        <img src="https://i.ibb.co/GVj3g6t/database-seo-1-270cb06b819915c5f763a0b9f88255e044c4dac5-249328f222f09586e55df76cb2fc99cd28d45a09.png" />
       </Content>
     </Wrap>
   );
-};
+}
 
-export default Step13;
+const Content = styled.div`
+  display: flex;
+  border: 1px solid black;
+  font-family: "Pretendard";
+  width: 80%;
+  border-radius: 10px;
+  flex-direction: column;
+  padding: 10px;
+`;
+const Heading = styled.div`
+  display: flex;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 2;
+`;
+const Heading2 = styled.div`
+  display: flex;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.3;
+`;
+
+const Body = styled.div`
+  display: flex;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 20px;
+`;

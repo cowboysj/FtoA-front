@@ -27,6 +27,8 @@ import Step23 from "./Test/Step23";
 import Step2Loading from "./Test/Step2Loading";
 import Step5Loading from "./Test/Step5Loading";
 import Step5Result from "./Test/Step5Result";
+import Step1Select from "./Test/Step1Select";
+import Step11 from "./Test/Step11";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
             {<Route path="/oauth" element={<KakaoRedirect />} />}
             {/*kakao Redirect 화면 */}
             {<Route path="/step1" element={<Step1 />} />}
+            {<Route path="/step11" element={<Step11 />} />}
+            {<Route path="/step1select" element={<Step1Select />} />}
             {/*step1 */}
             {<Route path="/step12" element={<Step12 />} />}
             {<Route path="/step13" element={<Step13 />} />}
