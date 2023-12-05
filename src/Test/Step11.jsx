@@ -22,9 +22,9 @@ const Wrap = styled.div`
     border-radius: 5px; /* 스크롤바 모서리 둥글게 */
   }
 
-  ::-webkit-scrollbar-thumb:hover {
+/*   ::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* 스크롤바 호버 시 색상 변경 */
-  }
+  } */
 `;
 
 const Text = styled.div`
